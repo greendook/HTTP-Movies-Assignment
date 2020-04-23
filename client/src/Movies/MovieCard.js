@@ -1,7 +1,10 @@
 import React from 'react';
-
-const MovieCard = props => {
+import { Link } from 'react-router-dom';
+import UpdateMovie from './UpdateMovie';
+import DeleteMovie from './DeleteMovie';
+const MovieCard = (props) => {
   const { title, director, metascore, stars } = props.movie;
+  console.log('props in movie card', props);
   return (
     <div className="movie-card">
       <h2>{title}</h2>
@@ -13,11 +16,18 @@ const MovieCard = props => {
       </div>
       <h3>Actors</h3>
 
-      {stars.map(star => (
+      {stars.map((star) => (
         <div key={star} className="movie-star">
           {star}
         </div>
       ))}
+
+      {/* <div className="update-button"> */}
+      {/* <Link to={`/update-movie/${props.movie.id}`}> */}
+      <UpdateMovie state={props} />
+      <DeleteMovie state={props} />
+      {/* </Link> */}
+      {/* </div> */}
     </div>
   );
 };
